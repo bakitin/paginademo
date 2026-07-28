@@ -1,312 +1,171 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Viviendas Prefabricadas en Colombia</title>
-		<meta name="theme-color" content="#0f4ea8">
-
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="style.css">
-		<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23eaf2ff'/%3E%3Cpath d='M18 18h28v8H36v20h-8V26H18z' fill='%230f4ea8'/%3E%3Cpath d='M28 38h8v8h-8z' fill='%230f4ea8'/%3E%3C/svg%3E">
-	</head>
-	<body>
-		<div class="demo-banner" role="note" aria-label="Aviso de demostración">
-			<div class="container">
-				<p>Este es un sitio web de demostración.</p>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Hamburgueza: una landing demostrativa de un proyecto SENA para centralizar evidencias y entregas.">
+	<title>Hamburgueza | Evidencias en un solo lugar</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<main>
+		<section class="hero" id="inicio">
+			<div class="hero__content">
+				<p class="eyebrow">Proyecto SENA · Landing demostrativa</p>
+				<h1>Hamburgueza</h1>
+				<p class="hero__subtitle">Todas tus evidencias, en un solo lugar.</p>
+				<p class="hero__text">La idea nació de algo que muchos aprendices viven: mandar trabajos por un lado, por otro, volver a enviarlos y aun así no saber si el instructor sí los vio. Queremos que eso quede más claro y menos enredado.</p>
+				<div class="hero__actions">
+					<a class="btn btn--primary" href="#funciones">Ver cómo funciona</a>
+					<a class="btn btn--ghost" href="#equipo">Ver el equipo</a>
+				</div>
 			</div>
-		</div>
 
-		<header class="site-header">
-			<nav class="navbar navbar-expand-lg">
-				<div class="container navbar-shell">
-					<a class="navbar-brand" href="#inicio" aria-label="Inicio">
-						<span class="brand-mark">VP</span>
-						<span class="brand-text">
-							<strong>Vivienda Prefab</strong>
-							<small>Construcción modular</small>
-						</span>
-					</a>
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir navegación">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="mainNav">
-						<ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
-							<li class="nav-item"><a class="nav-link active" href="#inicio">Inicio</a></li>
-							<li class="nav-item"><a class="nav-link" href="#proceso">Proceso</a></li>
-							<li class="nav-item"><a class="nav-link" href="#proyectos">Proyectos</a></li>
-							<li class="nav-item"><a class="nav-link" href="#beneficios">Beneficios</a></li>
-							<li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
-						</ul>
-						<a class="btn-header" href="#contacto">Cotizar proyecto <i class="fa-solid fa-arrow-right-long"></i></a>
-					</div>
+			<div class="hero__panel" aria-label="Resumen del proyecto">
+				<div class="stat-card stat-card--wide">
+					<span class="stat-card__label">Estado general</span>
+					<strong>Una sola entrega, un solo registro</strong>
+					<p>Todo queda guardado por competencia, con historial y retroalimentación directa.</p>
 				</div>
-			</nav>
-		</header>
 
-		<main>
-			<section class="hero" id="inicio">
-				<div class="container hero-inner">
-					<div class="row align-items-center g-5">
-						<div class="col-lg-6 hero-copy" data-aos="fade-up" data-aos-duration="900">
-							<p class="eyebrow">CONSTRUCCIÓN PREFABRICADA EN COLOMBIA</p>
-							<h1>Viviendas prefabricadas<br><span>con precisión, rapidez y diseño.</span></h1>
-							<p class="hero-text">Diseñamos y fabricamos soluciones habitacionales modulares para proyectos residenciales, rurales y de desarrollo inmobiliario.</p>
-							<div class="hero-actions">
-								<a id="btn-primary-hero" href="#contacto">Solicitar asesoría <i class="fa-solid fa-arrow-right-long"></i></a>
-								<a id="btn-secondary-hero" href="#proceso">Ver proceso constructivo <i class="fa-solid fa-arrow-right-long"></i></a>
-							</div>
-						</div>
-						<div class="col-lg-6" data-aos="fade-left" data-aos-duration="900">
-							<div class="hero-visual">
-								<div class="hero-card hero-card-main">
-									<span class="visual-label">Casa modelo</span>
-									<img class="project-image" src="src/4.png" alt="Vivienda prefabricada de demostración">
-								</div>
-								<div class="hero-card hero-card-side">
-									<span class="mini-label">Tiempo estimado</span>
-									<strong>+30%</strong>
-									<small>más eficiente que obra tradicional</small>
-								</div>
-								<div class="hero-card hero-card-side hero-card-floating">
-									<span class="mini-label">Cobertura</span>
-									<strong>Colombia</strong>
-									<small>proyectos urbanos y rurales</small>
-								</div>
-							</div>
-						</div>
-					</div>
+				<div class="stat-grid">
+					<article class="stat-card">
+						<span class="stat-card__label">Estados</span>
+						<strong>Pendiente</strong>
+						<p>Entregada · Revisada · Corregir</p>
+					</article>
+					<article class="stat-card">
+						<span class="stat-card__label">Avisos</span>
+						<strong>Fechas al día</strong>
+						<p>Para no dejar todo para el final.</p>
+					</article>
 				</div>
-				<div class="scroll-indicator">
-					<div class="mouse"></div>
-					<span>Explora la propuesta</span>
-				</div>
-			</section>
-
-			<section class="notice-strip" aria-label="Aviso informativo">
-				<div class="container">
-					<div class="notice-strip-inner" data-aos="fade-up">
-						<p>Soluciones modulares, materiales controlados y una ejecución pensada para reducir tiempos de obra sin comprometer el resultado final.</p>
-					</div>
-				</div>
-			</section>
-
-			<section class="process-section" id="proceso">
-				<div class="container">
-					<div class="section-head" data-aos="fade-up">
-						<div>
-							<p class="section-kicker">PROCESO CONSTRUCTIVO</p>
-							<h2 class="section-title">De la idea al montaje, con control en cada etapa.</h2>
-						</div>
-						<p class="section-text">Acompañamos el proyecto desde la definición del sistema estructural hasta la entrega final, con procesos claros y trazables.</p>
-					</div>
-					<div class="row g-4">
-						<div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="0">
-							<article class="process-card">
-								<span class="process-index">01</span>
-								<h3>Diseño y planeación</h3>
-								<p>Definimos distribución, sistema constructivo y requerimientos del terreno.</p>
-							</article>
-						</div>
-						<div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="80">
-							<article class="process-card">
-								<span class="process-index">02</span>
-								<h3>Fabricación en taller</h3>
-								<p>Producción controlada de módulos, paneles y componentes estructurales.</p>
-							</article>
-						</div>
-						<div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="160">
-							<article class="process-card">
-								<span class="process-index">03</span>
-								<h3>Transporte y ensamble</h3>
-								<p>Llevamos los elementos al lote y realizamos el montaje con precisión.</p>
-							</article>
-						</div>
-						<div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="240">
-							<article class="process-card">
-								<span class="process-index">04</span>
-								<h3>Entrega y ajustes</h3>
-								<p>Verificamos acabados, instalaciones y condiciones finales de uso.</p>
-							</article>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			<section class="benefits-section" id="beneficios">
-				<div class="container">
-					<div class="section-head section-head-light" data-aos="fade-up">
-						<div>
-							<p class="section-kicker">BENEFICIOS</p>
-							<h2 class="section-title">Una alternativa moderna para construir vivienda.</h2>
-						</div>
-						<p class="section-text">La construcción prefabricada permite optimizar tiempos, controlar materiales y mantener un resultado consistente.</p>
-					</div>
-					<div class="row g-4">
-						<div class="col-md-6 col-xl-4" data-aos="fade-up">
-							<article class="benefit-card">
-								<i class="fa-solid fa-helmet-safety"></i>
-								<h3>Control técnico</h3>
-								<p>Supervisión de fabricación y montaje con criterios de calidad estables.</p>
-							</article>
-						</div>
-						<div class="col-md-6 col-xl-4" data-aos="fade-up" data-aos-delay="80">
-							<article class="benefit-card">
-								<i class="fa-solid fa-layer-group"></i>
-								<h3>Sistema modular</h3>
-								<p>Estructuras pensadas para crecer por etapas o adaptarse a diferentes lotes.</p>
-							</article>
-						</div>
-						<div class="col-md-6 col-xl-4" data-aos="fade-up" data-aos-delay="160">
-							<article class="benefit-card">
-								<i class="fa-solid fa-chart-line"></i>
-								<h3>Mejor planificación</h3>
-								<p>Procesos más previsibles para proyectos residenciales y de inversión.</p>
-							</article>
-						</div>
-					</div>
 			</div>
-			</section>
+		</section>
 
-			<section class="gallery-section" id="proyectos">
-				<div class="container">
-					<div class="section-head section-head-dark" data-aos="fade-up">
+		<section class="section section--problem" id="problema">
+			<div class="section__header">
+				<p class="eyebrow">El problema</p>
+				<h2>Todo se vuelve una conversación rara cuando la evidencia está regada por todos lados.</h2>
+			</div>
+			<div class="story-card">
+				<p>Un día se sube algo por Territorium, al otro se manda por correo, luego se vuelve a enviar por Drive, y si el instructor pide algo rápido, termina llegando por WhatsApp. Al final nadie sabe bien cuál fue la versión buena ni dónde quedó guardada.</p>
+				<p>Ahí empiezan los reprocesos, los archivos perdidos y esas charlas de <span>“yo sí lo envié”</span> que a nadie le gusta.</p>
+			</div>
+		</section>
+
+		<section class="section" id="solucion">
+			<div class="section__header">
+				<p class="eyebrow">La solución</p>
+				<h2>Con Hamburgueza, la evidencia se sube una vez y ya queda todo más claro.</h2>
+			</div>
+			<div class="split-layout">
+				<div class="info-card">
+					<p>La app reúne las entregas en un solo lugar, muestra en qué estado va cada una y avisa cuando el instructor deja observaciones.</p>
+					<p>No buscamos complicar nada. La idea es que el aprendiz vea qué entregó, qué falta y qué le toca corregir sin andar buscando por chat o correo.</p>
+				</div>
+				<div class="timeline">
+					<div class="timeline__item">
+						<span>1</span>
 						<div>
-							<p class="section-kicker section-kicker-dark">GALERÍA DE PROYECTOS</p>
-							<h2 class="section-title section-title-light">Referencias visuales de vivienda prefabricada.</h2>
-						</div>
-						<p class="section-text section-text-light">Espacios listos para insertar imágenes de casas, módulos, fachadas o interiores cuando el contenido final esté disponible.</p>
-					</div>
-					<div class="row g-4">
-						<div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="0">
-							<article class="gallery-card">
-								<img class="gallery-image" src="src/1.png" alt="Vivienda prefabricada campestre de demostración">
-								<h3>Casa campestre</h3>
-								<p>Vivienda para lote rural con solución modular.</p>
-							</article>
-						</div>
-						<div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="80">
-							<article class="gallery-card">
-								<img class="gallery-image" src="src/2.png" alt="Casa prefabricada familiar de demostración">
-								<h3>Casa familiar</h3>
-								<p>Distribución compacta para vivienda principal.</p>
-							</article>
-						</div>
-						<div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="160">
-							<article class="gallery-card">
-								<img class="gallery-image" src="src/3.png" alt="Módulo habitable prefabricado de demostración">
-								<h3>Módulo habitable</h3>
-								<p>Solución para ampliaciones o proyectos temporales.</p>
-							</article>
-						</div>
-						<div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="240">
-							<article class="gallery-card">
-								<img class="gallery-image" src="src/4.png" alt="Conjunto de vivienda prefabricada de demostración">
-								<h3>Conjunto de casas</h3>
-								<p>Escala para desarrollos residenciales planificados.</p>
-							</article>
+							<h3>Subes tu evidencia</h3>
+							<p>Una sola carga por RAP o competencia.</p>
 						</div>
 					</div>
-				</div>
-			</section>
-
-			<section class="materials-section">
-				<div class="container">
-					<div class="materials-panel" data-aos="zoom-in">
-						<div class="materials-copy">
-							<p class="section-kicker">MATERIALES Y ACABADOS</p>
-							<h2 class="section-title">Componentes pensados para durabilidad y desempeño.</h2>
-							<p class="section-text">Perfiles, paneles, cerramientos y terminaciones que se adaptan a clima, uso y requerimientos del proyecto.</p>
-						</div>
-						<div class="materials-list">
-							<div class="material-pill">Estructura liviana</div>
-							<div class="material-pill">Panelería</div>
-							<div class="material-pill">Aislamiento</div>
-							<div class="material-pill">Cubiertas</div>
-							<div class="material-pill">Acabados interiores</div>
-							<div class="material-pill">Instalaciones base</div>
+					<div class="timeline__item">
+						<span>2</span>
+						<div>
+							<h3>Ves su estado</h3>
+							<p>Pendiente, entregada, revisada o por corregir.</p>
 						</div>
 					</div>
-				</div>
-			</section>
-
-			<section class="contact-section" id="contacto">
-				<div class="container">
-					<div class="contact-panel" data-aos="fade-up">
-						<div class="contact-copy">
-							<p class="section-kicker section-kicker-dark">CONTACTO</p>
-							<h2 class="section-title section-title-light">Cuéntanos tu proyecto y recibe una propuesta inicial.</h2>
-							<p class="section-text section-text-light">Si buscas una vivienda prefabricada para lote urbano, rural o desarrollo por etapas, podemos ayudarte a estructurar la idea.</p>
+					<div class="timeline__item">
+						<span>3</span>
+						<div>
+							<h3>Recibes feedback</h3>
+							<p>El instructor revisa y tú te enteras sin estar preguntando.</p>
 						</div>
-						<div class="contact-card">
-							<div class="contact-row">
-								<span>Tipo de proyecto</span>
-								<strong>Vivienda prefabricada</strong>
-							</div>
-							<div class="contact-row">
-								<span>Ubicación</span>
-								<strong>Colombia</strong>
-							</div>
-							<div class="contact-row">
-								<span>Estado</span>
-								<strong>Disponible para cotización</strong>
-							</div>
-							<a id="btn-white-hero" href="mailto:proyectos@ejemplo.com">Escríbenos ahora <i class="fa-solid fa-arrow-right-long"></i></a>
-						</div>
-					</div>
-				</div>
-			</section>
-		</main>
-
-		<footer class="site-footer">
-			<div class="container">
-				<div class="row g-4 footer-top">
-					<div class="col-lg-4 footer-brand-block">
-						<div class="footer-mark">VP</div>
-						<p>Diseño y construcción de viviendas prefabricadas con enfoque técnico, eficiente y adaptable.</p>
-					</div>
-					<div class="col-lg-3 footer-column">
-						<h6>Secciones</h6>
-						<ul>
-							<li><a href="#inicio">Inicio</a></li>
-							<li><a href="#proceso">Proceso</a></li>
-							<li><a href="#proyectos">Proyectos</a></li>
-							<li><a href="#contacto">Contacto</a></li>
-						</ul>
-					</div>
-					<div class="col-lg-5 footer-column">
-						<h6>Información</h6>
-						<ul class="footer-contact-list">
-							<li><i class="fa-solid fa-house"></i><span>Casas, módulos y soluciones habitacionales</span></li>
-							<li><i class="fa-solid fa-location-dot"></i><span>Cobertura en Colombia</span></li>
-							<li><i class="fa-regular fa-envelope"></i><span>proyectos@ejemplo.com</span></li>
-						</ul>
-					</div>
-				</div>
-				<div class="footer-bottom">
-					<p>© 2026 Vivienda Prefab. Página de demostración.</p>
-					<div class="footer-legal">
-						<a href="#">Política de privacidad</a>
-						<span></span>
-						<a href="#">Términos y condiciones</a>
 					</div>
 				</div>
 			</div>
-		</footer>
+		</section>
 
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-		<script src="https://kit.fontawesome.com/140ac43554.js" crossorigin="anonymous"></script>
-		<script>
-			AOS.init({
-				duration: 800,
-				easing: 'ease-out-cubic',
-				once: true,
-				offset: 100,
-				anchorPlacement: 'top-bottom'
-			});
-		</script>
-	</body>
+		<section class="section" id="funciones">
+			<div class="section__header">
+				<p class="eyebrow">Funciones principales</p>
+				<h2>Lo que queremos que haga sin enredar la experiencia.</h2>
+			</div>
+			<div class="features-grid">
+				<article class="feature-card">
+					<h3>Registro por competencia</h3>
+					<p>Para saber exactamente qué evidencia va con cada espacio formativo.</p>
+				</article>
+				<article class="feature-card">
+					<h3>Historial de versiones</h3>
+					<p>Si cambias un archivo, no se pierde la pista de lo anterior.</p>
+				</article>
+				<article class="feature-card">
+					<h3>Recordatorios de entrega</h3>
+					<p>Las fechas límite no se quedan escondidas entre tantos mensajes.</p>
+				</article>
+				<article class="feature-card">
+					<h3>Retroalimentación del instructor</h3>
+					<p>Todo queda más ordenado cuando la revisión también se ve en la app.</p>
+				</article>
+				<article class="feature-card">
+					<h3>Progreso por trimestre</h3>
+					<p>Una vista simple para revisar cómo va el avance general.</p>
+				</article>
+				<article class="feature-card">
+					<h3>Estados claros</h3>
+					<p>Se entiende rápido qué falta, qué está listo y qué toca corregir.</p>
+				</article>
+			</div>
+		</section>
+
+		<section class="section" id="stack">
+			<div class="section__header">
+				<p class="eyebrow">Cómo está hecho</p>
+				<h2>Una base sencilla para crecer después sin romper todo.</h2>
+			</div>
+			<div class="stack-card">
+				<p>La idea es montarlo con <strong>Laravel</strong> en el backend, siguiendo una lógica tipo <strong>MVC</strong> y con autenticación por roles para estudiantes e instructores.</p>
+				<p>Los datos viven en <strong>MySQL</strong> o <strong>PostgreSQL</strong>, y el frente puede quedarse en <strong>HTML, CSS y JS</strong></p>
+				<div class="chips">
+					<span>Laravel</span>
+					<span>MVC</span>
+					<span>API</span>
+					<span>MySQL / PostgreSQL</span>
+					<span>HTML · CSS · JS</span>
+				</div>
+			</div>
+		</section>
+
+		<section class="section section--credits" id="equipo">
+			<div class="section__header">
+				<p class="eyebrow">Equipo y créditos</p>
+				<h2>Hecho por nosotros.</h2>
+			</div>
+			<div class="credits-grid">
+				<article class="credit-card">
+					<h3>Equipo</h3>
+					<p>Santiago Segura Mondragón</p>
+					<p>Jesus Herrera Mayorga</p>
+					<p>Juan Esteban Castaño Villa</p>
+				</article>
+				<article class="credit-card">
+					<h3>Contexto</h3>
+					<p>Proyecto académico del SENA para ordenar la entrega de evidencias.</p>
+				</article>
+				<article class="credit-card">
+					<h3>Instructor</h3>
+					<p>Edwin Guerrero</p>
+				</article>
+			</div>
+		</section>
+	</main>
+</body>
 </html>
