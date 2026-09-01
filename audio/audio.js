@@ -9,23 +9,25 @@ class Audio {
     async requestMicrophoneAccess() {
         try {
 
-            this.stream = await navigator.mediaDevices.getUserMedia({ audio: {
+            this.stream = await navigator.mediaDevices.getUserMedia({
+                audio: {
 
-                echoCancellation: false,
-                noiseSuppression: true,
-                autoGainControl: true,
+                    echoCancellation: false,
+                    noiseSuppression: true,
+                    autoGainControl: true,
 
-                //Calidad
+                    //Calidad
 
-                sampleRate: 96000,
-                sampleSize: 24,
-                channelCount: 2,
+                    sampleRate: 96000,
+                    sampleSize: 24,
+                    channelCount: 2,
 
-                //Latencia
+                    //Latencia
 
-                latency: 0,
+                    latency: 0,
 
-            } });
+                }
+            });
 
             return true;
 
@@ -35,7 +37,7 @@ class Audio {
         };
     };
 
-    async getTracks() {
+    async getAudioTracks() {
         try {
             return this.stream.getTracks();
         } catch (error) {
@@ -43,7 +45,7 @@ class Audio {
         };
     };
 
-    async getSenders(connection) {
+    async getAudioSenders(connection) {
         try {
             return connection.getSenders();
         } catch (error) {
@@ -51,7 +53,7 @@ class Audio {
         };
     };
 
-    hasTrack(track, senders) {
+    hasAudioTrack(track, senders) {
         try {
 
             return senders.some((sender) => {
@@ -63,7 +65,7 @@ class Audio {
         };
     };
 
-    async addTrack(track, connection) {
+    async addAudioTrack(track, connection) {
         try {
 
             return connection.addTrack(track, this.stream);
@@ -73,7 +75,7 @@ class Audio {
         };
     };
 
-    async configureSender(sender) {
+    async configureAudioSender(sender) {
         try {
 
             if (sender) {
@@ -93,26 +95,27 @@ class Audio {
         };
     };
 
-    async waitForRemoteTrack(id, connection) {
-        return new Promise((resolve, reject) => {
-            try {
+    async onRemoteAudioTrack(id, connection, callback) {
+        try {
 
-                const handler = (event) => {
-                    resolve(event.streams[0]);
-                };
-
-                connection.addEventListener("track", handler);
-
-                this.trackHandlers[id] = handler;
-
-            } catch (error) {
-                console.log("Error al recibir el audio de otra persona:", error, error.name);
-                reject(error);
+            const handler = (event) => {
+                
+                const kind = event.track.kind
+                
+                if (kind === "audio") {
+                    callback(event.streams[0])
+                }
             };
-        });
+
+            connection.addEventListener("track", handler);
+            this.trackHandlers[id] = handler;
+
+        } catch (error) {
+            console.log("Error al recibir el track remoto:", error, error.name);
+        };
     };
 
-    async removeTrackListener(id, connection) {
+    async removeAudioTrackListener(id, connection) {
         try {
 
             const handlerToDelete = this.trackHandlers[id];
