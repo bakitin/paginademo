@@ -14,7 +14,8 @@ class Audio {
 
                     echoCancellation: false,
                     noiseSuppression: true,
-
+                    autoGainControl: true,
+                    
                     //Calidad
 
                     sampleRate: 96000,
