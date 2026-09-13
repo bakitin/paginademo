@@ -11,16 +11,12 @@ class Display {
 
             this.stream = await navigator.mediaDevices.getDisplayMedia({
                 video: {
-
                     //Calidad
-                    width: { ideal: 1920 },
-                    height: { ideal: 1080 },
+                    width: { ideal: 720 },
+                    height: { ideal: 480 },
                     frameRate: { ideal: 60, max: 60 },
-
-
-
-
-                }
+                },
+                audio: true
             });
 
             return true;
