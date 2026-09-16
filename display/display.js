@@ -14,9 +14,7 @@ class Display {
                     height: { ideal: 1080 },
                     frameRate: { ideal: 60, max: 60 },
                 },
-                audio: {
-                    suppressLocalAudioPlayback: true
-                }
+                audio: true
             });
 
             return true;
