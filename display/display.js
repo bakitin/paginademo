@@ -8,19 +8,18 @@ class Display {
 
     async requestVideoAccess() {
         try {
-
             this.stream = await navigator.mediaDevices.getDisplayMedia({
                 video: {
-                    //Calidad
-                    width: { ideal: 720 },
-                    height: { ideal: 480 },
+                    width: { ideal: 1920 },
+                    height: { ideal: 1080 },
                     frameRate: { ideal: 60, max: 60 },
                 },
-                audio: true
+                audio: {
+                    suppressLocalAudioPlayback: true
+                }
             });
 
             return true;
-
         } catch (error) {
             console.error("Error al obtener permiso para iniciar Display Share:", error, error.name);
             return false;
@@ -45,6 +44,14 @@ class Display {
     async getVideoTracks() {
         try {
             return this.stream.getVideoTracks();
+        } catch (error) {
+            console.log("Ocurrio un error al momento de intentar obtener los tracks: ", error);
+        };
+    };
+
+    async getSystemAudioTracks() {
+        try {
+            return this.stream.getAudioTracks();
         } catch (error) {
             console.log("Ocurrio un error al momento de intentar obtener los tracks: ", error);
         };
@@ -122,6 +129,8 @@ class Display {
                 const kind = event.track.kind;
 
                 if (kind === "video") {
+
+                    console.log("tracks del stream recibido:", event.streams[0].getTracks());
                     callback(event.streams[0]);
 
 

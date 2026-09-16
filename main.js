@@ -74,7 +74,7 @@ class Orchestrator {
                         this.handleServerDown();
                     });
 
-                    const username = this.ui.getUsername();
+                    const username = this.userName;
                     this.signaling.sendMessage(null, null, username);
 
                     await this.listenForMessages();
@@ -100,7 +100,8 @@ class Orchestrator {
                 if (video == true) {
                     for (const peer of this.connectionsList.values()) {
                         if (peer) await peer.addDisplayTrack();
-                        
+                        if (peer) await peer.addDisplayAudioTrack();
+
                     };
 
                     const tracks = await this.display.getVideoTracks();
@@ -115,7 +116,7 @@ class Orchestrator {
                     alert("Debe seleccionar algo para compartir, petardo");
                     this.ui.enableButton("button_to_share_display");
                     this.ui.disableButton("button_to_stop_share_display");
-                    
+
                 };
             } catch (error) {
                 console.log("Hubo un error al intentar compartir pantalla");
@@ -186,6 +187,7 @@ class Orchestrator {
 
     async onOffer(id, data) {
         if (!id) return;
+        
         console.log("oferta recibida de", id);   // ← agrega esto
 
 
@@ -238,6 +240,7 @@ class Orchestrator {
 
         if (this.display.stream) {
             await peer.addDisplayTrack()
+            await peer.addDisplayAudioTrack();
         }
 
         peer.onRemoteAudio((track) => {
@@ -258,6 +261,7 @@ class Orchestrator {
 
     async onId(id) {
         if (!id) return;
+        if (id === this.userName) return;   // ← evita crear un peer de uno mismo
 
         const peer = new PeerConnection(id, this.userName, this.signaling, this.connections, this.audio, this.display);
         await peer.connect();
@@ -274,6 +278,7 @@ class Orchestrator {
 
             if (this.display.stream) {
                 await peer.addDisplayTrack()
+                await peer.addDisplayAudioTrack();
             }
 
             peer.onRemoteAudio((track) => {
@@ -366,9 +371,12 @@ class Orchestrator {
     async stopSharingDisplay() {
         for (const peer of this.connectionsList.values()) {
             const senders = await this.display.getVideoSenders(peer.connection);
+
             const videoSender = senders.find(sender => sender.track && sender.track.kind === 'video');
-            console.log("peer:", peer.id, "videoSender:", videoSender);   // ← agrega esto
             if (videoSender) peer.connection.removeTrack(videoSender);
+
+            const audioSender = senders.find(sender => sender.track && sender.track.kind === 'audio' && sender.track.label === "System Audio");
+            if (audioSender) peer.connection.removeTrack(audioSender);
         };
         this.ui.enableButton("button_to_share_display");
     };
