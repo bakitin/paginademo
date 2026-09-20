@@ -128,15 +128,19 @@ class Orchestrator {
             try {
                 this.ui.disableButton("button_to_stop_share_display");
                 await this.stopSharingDisplay();
-
+        
                 const tracks = await this.display.getVideoTracks();
+                console.log("tracks a detener:", tracks);   // ← agrega esto
+        
                 if (tracks) {
                     for (const track of tracks) {
+                        console.log("deteniendo track:", track.id, track.readyState);   // ← y esto
                         track.stop();
+                        console.log("después de stop:", track.readyState);   // ← y esto
                     };
                 };
             } catch (error) {
-                console.log("Hubo un error al dejar de compartir pantalla");
+                console.log("Hubo un error al dejar de compartir pantalla", error);
             };
         });//Boton UI de dejar de compartir pantalla
 
