@@ -128,15 +128,18 @@ class Orchestrator {
             try {
                 this.ui.disableButton("button_to_stop_share_display");
                 await this.stopSharingDisplay();
-        
+
                 const tracks = await this.display.getVideoTracks();
-                console.log("tracks a detener:", tracks);   // ← agrega esto
-        
                 if (tracks) {
                     for (const track of tracks) {
-                        console.log("deteniendo track:", track.id, track.readyState);   // ← y esto
                         track.stop();
-                        console.log("después de stop:", track.readyState);   // ← y esto
+                    };
+                };
+
+                const audioTracks = await this.display.getSystemAudioTracks();
+                if (audioTracks) {
+                    for (const track of audioTracks) {
+                        track.stop();
                     };
                 };
             } catch (error) {
@@ -191,7 +194,7 @@ class Orchestrator {
 
     async onOffer(id, data) {
         if (!id) return;
-        
+
         console.log("oferta recibida de", id);   // ← agrega esto
 
 
@@ -325,7 +328,7 @@ class Orchestrator {
             location.reload()
         };
 
-        
+
     };
 
     //Escucha los mensajes del servidor y arma/actualiza el PeerConnection de cada peer segun el caso.
