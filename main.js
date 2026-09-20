@@ -311,15 +311,17 @@ class Orchestrator {
                 localStorage.setItem('username', username);
                 this.ui.hideUsernameModal("modal_overlay");
                 this.userName = username
+                location.reload()
             });
 
         } else {
             const username = this.ui.getUsername();
             this.ui.showUsername("usarname_grettings", username);
             this.userName = username
+            location.reload()
         };
 
-        location.reload()
+        
     };
 
     //Escucha los mensajes del servidor y arma/actualiza el PeerConnection de cada peer segun el caso.
