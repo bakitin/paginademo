@@ -97,17 +97,19 @@ class Audio {
 
     async onRemoteAudioTrack(id, connection, callback) {
         try {
-            const handler = (event) => {
-                const kind = event.track.kind;
-                const tracksInStream = event.streams[0].getTracks().length;
 
-                if (kind === "audio" && tracksInStream === 1) {
-                    callback(event.streams[0]);
+            const handler = (event) => {
+                
+                const kind = event.track.kind
+                
+                if (kind === "audio") {
+                    callback(event.streams[0])
                 }
             };
 
             connection.addEventListener("track", handler);
             this.trackHandlers[id] = handler;
+
         } catch (error) {
             console.log("Error al recibir el track remoto:", error, error.name);
         };

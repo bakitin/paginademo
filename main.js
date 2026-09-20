@@ -17,11 +17,11 @@ class Orchestrator {
 
     constructor() {
 
-        //Estado propio
-        this.connectionsList = new Map(); // id -> PeerConnection
+
+        this.connectionsList = new Map();
         this.userName = ""
 
-        // Dependencias compartidas por toda la app
+
         this.audio = new Audio();
         this.display = new Display;
         this.ui = new UI();
@@ -29,10 +29,11 @@ class Orchestrator {
         this.signaling = new Signaling();
 
 
+
         this.init();
     }
 
-    //Inicializador del programa
+
     async init() {
 
         //Verificacion de Username y asigna userName a variable global de la clase
@@ -59,13 +60,8 @@ class Orchestrator {
         this.ui.disableButton("button_to_share_display");
 
 
-
-
         this.ui.bindEnterCallButton("button_to_enter_into_the_call", async () => {
             try {
-
-                this.ui.enableButton("button_to_share_display");
-
 
                 const microphone = await this.audio.requestMicrophoneAccess();
 
@@ -74,7 +70,10 @@ class Orchestrator {
                         this.handleServerDown();
                     });
 
+                    this.ui.enableButton("button_to_share_display");
+
                     const username = this.userName;
+                    
                     this.signaling.sendMessage(null, null, username);
 
                     await this.listenForMessages();
@@ -100,9 +99,10 @@ class Orchestrator {
                 if (video == true) {
                     for (const peer of this.connectionsList.values()) {
                         if (peer) await peer.addDisplayTrack();
-                        if (peer) await peer.addDisplayAudioTrack();
 
                     };
+
+                    
 
                     const tracks = await this.display.getVideoTracks();
                     if (tracks) {
@@ -187,7 +187,6 @@ class Orchestrator {
 
     async onOffer(id, data) {
         if (!id) return;
-        
         console.log("oferta recibida de", id);   // ← agrega esto
 
 
@@ -240,7 +239,6 @@ class Orchestrator {
 
         if (this.display.stream) {
             await peer.addDisplayTrack()
-            await peer.addDisplayAudioTrack();
         }
 
         peer.onRemoteAudio((track) => {
@@ -261,7 +259,6 @@ class Orchestrator {
 
     async onId(id) {
         if (!id) return;
-        if (id === this.userName) return;   // ← evita crear un peer de uno mismo
 
         const peer = new PeerConnection(id, this.userName, this.signaling, this.connections, this.audio, this.display);
         await peer.connect();
@@ -278,7 +275,6 @@ class Orchestrator {
 
             if (this.display.stream) {
                 await peer.addDisplayTrack()
-                await peer.addDisplayAudioTrack();
             }
 
             peer.onRemoteAudio((track) => {
@@ -371,12 +367,9 @@ class Orchestrator {
     async stopSharingDisplay() {
         for (const peer of this.connectionsList.values()) {
             const senders = await this.display.getVideoSenders(peer.connection);
-
             const videoSender = senders.find(sender => sender.track && sender.track.kind === 'video');
+            console.log("peer:", peer.id, "videoSender:", videoSender);   // ← agrega esto
             if (videoSender) peer.connection.removeTrack(videoSender);
-
-            const audioSender = senders.find(sender => sender.track && sender.track.kind === 'audio' && sender.track.label === "System Audio");
-            if (audioSender) peer.connection.removeTrack(audioSender);
         };
         this.ui.enableButton("button_to_share_display");
     };

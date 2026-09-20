@@ -70,6 +70,7 @@ class UI {
 
         return videoElement;
     };
+
     createAudioElement(src, id) {
         const audioElement = document.createElement('audio');
         audioElement.autoplay = true;
@@ -153,7 +154,6 @@ class UI {
         const videoElement = this.createVideoElement(videoStream, id);
         this.appendVideo(videoContainer, videoElement);
     };
-
 
     showUsernameModal(id) {
         const overlay = document.getElementById(id);
