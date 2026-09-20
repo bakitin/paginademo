@@ -318,6 +318,8 @@ class Orchestrator {
             this.ui.showUsername("usarname_grettings", username);
             this.userName = username
         };
+
+        location.reload()
     };
 
     //Escucha los mensajes del servidor y arma/actualiza el PeerConnection de cada peer segun el caso.
