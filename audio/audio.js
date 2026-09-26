@@ -127,6 +127,21 @@ class Audio {
             console.log("Ocurrio un error al intentar eliminar el track del listener");
         };
     };
+
+    async setMicronoMuteOrUnmuted() {
+        try {
+            const tracks = await this.getAudioTracks();
+            const nuevoEstado = !tracks[0]?.enabled;
+
+            for (const track of tracks) {
+                track.enabled = nuevoEstado;
+            };
+
+            return nuevoEstado;
+        } catch (error) {
+            console.log("Ocurrio un error al intentar mutear el microfono: ", error);
+        };
+    };
 };
 
 export default Audio;

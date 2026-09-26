@@ -5,7 +5,7 @@ import UI from "./ui/ui.js";
 import Connections from "./connections/connection.js";
 import Signaling from "./signaling/signaling.js";
 import PeerConnection from "./peerconnection/peerconnection.js";
-
+import Chat from "./chat/chat.js";
 
 
 function onLoad() {
@@ -27,6 +27,7 @@ class Orchestrator {
         this.ui = new UI();
         this.connections = new Connections();
         this.signaling = new Signaling();
+        this.chat = new Chat(this.signaling)
 
 
         this.init();
@@ -57,14 +58,14 @@ class Orchestrator {
         this.ui.disableButton("button_to_close_connection");
         this.ui.disableButton("button_to_stop_share_display");
         this.ui.disableButton("button_to_share_display");
-
-
-
+        this.ui.disableButton("button_send_chat");
 
         this.ui.bindEnterCallButton("button_to_enter_into_the_call", async () => {
             try {
 
                 this.ui.enableButton("button_to_share_display");
+                
+
 
 
                 const microphone = await this.audio.requestMicrophoneAccess();
@@ -78,11 +79,16 @@ class Orchestrator {
                     this.signaling.sendMessage(null, null, username);
 
                     await this.listenForMessages();
+                    
 
                     this.ui.disableButton("button_to_enter_into_the_call");
                     this.ui.enableButton("button_to_close_connection");
                 } else {
                     alert("Debe permitir el acceso al microfono");
+                    this.ui.disableButton("button_to_close_connection");
+                    this.ui.disableButton("button_to_stop_share_display");
+                    this.ui.disableButton("button_to_share_display");
+                    this.ui.disableButton("button_send_chat");
                 };
 
             } catch (error) {
@@ -113,16 +119,13 @@ class Orchestrator {
                         };
                     };
                 } else {
-                    alert("Debe seleccionar algo para compartir, petardo");
                     this.ui.enableButton("button_to_share_display");
                     this.ui.disableButton("button_to_stop_share_display");
-
                 };
             } catch (error) {
                 console.log("Hubo un error al intentar compartir pantalla");
             };
         });//Boton UI de empezar a compartir pantalla
-
 
         this.ui.bindStopShareDisplayButton("button_to_stop_share_display", async () => {
             try {
@@ -146,7 +149,6 @@ class Orchestrator {
                 console.log("Hubo un error al dejar de compartir pantalla", error);
             };
         });//Boton UI de dejar de compartir pantalla
-
 
         this.ui.bindExitCallButton("button_to_close_connection", async () => {
             try {
@@ -183,6 +185,21 @@ class Orchestrator {
             };
         });//Boton UI de cerrar llamada
 
+        this.ui.bindSendMessageButton("chat_input_row", async () => {
+            try {
+                const message = this.ui.getInputValue("chat_input");
+                this.chat.sendChatMessage(message);
+                this.ui.showChatPeer(this.userName, message, true);
+                this.ui.clearInput("chat_input");
+            } catch (error) {
+                console.log("Ocurrio un error al mandar un mensaje", error)
+            }
+        });//Boton UI de enviar mensaje
+
+        this.ui.bindMuteCallButton("button_to_mute_microphone", async () =>{
+            const state = await this.audio.setMicronoMuteOrUnmuted();
+            this.ui.switchIcon("button_to_mute_microphone",state)
+        });
 
         //En caso de cerrar el navegador enviar un mensaje de salida de llamada
         window.addEventListener("beforeunload", () => {
@@ -219,6 +236,7 @@ class Orchestrator {
         if (!peer) return;
 
         await peer.applyAnswer(data);
+        this.ui.enableButton("button_send_chat");
     };
 
     async onIce(id, data) {
@@ -264,6 +282,7 @@ class Orchestrator {
         );
 
         peer.monitorState((deadId) => this.removeDeadConnection(deadId));
+        this.ui.enableButton("button_send_chat");
     };
 
     async onId(id) {
@@ -305,6 +324,10 @@ class Orchestrator {
         };
     };
 
+    onChatMessage(data, id) {
+        this.ui.showChatPeer(id, data)
+    }
+
     onError(data) {
         alert(data);
 
@@ -344,6 +367,7 @@ class Orchestrator {
                     join_notification: (id, data) => this.onJoin(id),
                     id_notification: (id, data) => this.onId(id),
                     users_in_connection: (id, data) => this.onUsers(data),
+                    chat_message: (id, data) => this.onChatMessage(data, id),
                     error: (id, data) => this.onError(data)
                 };
 
